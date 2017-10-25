@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<style>
+* { margin: 0; padding: 0;}
+
+
+/* 初始化及基础样式 */
+ul, li { list-style: none outside none;}
+ul { padding: 0;}
+i { font-style: normal;}
+.ml10 { margin-left: 10px;}
+.mr10 { margin-right: 10px;}
+.cal_gray { color: #CCC; cursor: auto !important;}
+.cal_red { color: #FFF; background: red;}
+.cal_able { cursor: pointer;}
+
+
+.calendar_box {
+	width: 270px;
+	border: 1px solid red;
+	padding: 8px;
+	background: #FFF;
+	font-size: 14px;
+	position: absolute;
+	top: 10000;
+}
+/* Nav: 头部导航样式 */
+.calendar_title {
+	height: 30px;
+	line-height: 30px;
+	position: relative;
+	text-align: center;
+	padding: 0 75px;
+}
+
+/* Nav Common部分 */
+.calendar_title .prev_year, .calendar_title .prev_month, .calendar_title .next_year, .calendar_title .next_month, .calendar_title .menu_box li, .calendar_title .menu_item {
+	cursor: pointer;
+}
+
+/* Nav部分：[上一月、下一月]、[上一年、下一年]按钮样式 */
+.calendar_title .prev, .calendar_title .next {
+	position: absolute; top: 0;
+}
+.calendar_title .prev { left: 0;}
+.calendar_title .next { right: 0;}
+.calendar_title .prev_year {}
+.calendar_title .prev_month {}
+.calendar_title .next_year {}
+.calendar_title .next_month {}
+
+/* Nav: 年、月份样式 */
+.calendar_title .menu_wrp {
+	float: left;
+	width: 60px;
+	position: relative;
+}
+.calendar_title .menu_item {
+	display: block;
+}
+.calendar_title .menu_box {
+	display: none;
+	position:absolute;
+	left: -2px;
+	top: 28px;
+	width: 68px;
+	border: 1px solid #CCC;
+	padding: 2px;
+	background: #FFF;
+	text-align: center;
+	line-height: 20px;
+	font-size: 13px;
+	color: #5E5E5E;
+}
+.calendar_title .menu_box li { float: left;}
+.calendar_title .menu_items li { width: 34px;}
+.calendar_title .year_list_btns li { width: 22px;}
+.y_x_btn {*position: relative; *top: -2px;}
+
+
+/* 主体table部分样式 */
+.calendar_content {
+	clear: both;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+}
+.calendar_content tr, .calendar_content td {
+	line-height: 28px;
+}
+/* 底部样式 */
+.calendar_footer {}
+</style>
+</head>
+<body>
+<!-- <div class="calendar"></div> -->
+
+
+
+<div class="div1" style="border: 10px solid green; padding: 10px; position: absolute; top: 50px; left: 50px;">
+	<div class="div2" style="padding: 60px 0;margin: 10px; position:relative; border: 10px solid red; ">
+
+		<input type="text" id="startDate" class="calendar" value="" readonly="true" />－<input id="endDate" class="calendar" type="text" value="" /> <input type="button" value="确定">
+
+
+	</div>
+</div>
+
+<!--
+<div class="calendar_box">
+	<ul class="calendar_title">
+		<li class="prev"><span class="prev_year">PrvY</span><span class="prev_month ml10">PrvM</span></li>
+		<li>
+			<div class="menu_wrp">
+				<span class="menu_item current_year"><i>2015</i> 年</span>
+				<div class="menu_box">
+					<ul class="menu_items year_list">
+						<li>2010</li>
+						<li>2011</li>
+						<li>2012</li>
+						<li>2013</li>
+						<li>2014</li>
+						<li>2015</li>
+						<li>2016</li>
+						<li>2017</li>
+						<li>2018</li>
+						<li>2019</li>
+					</ul>
+					<ul class="year_list_btns">
+						<li class="y_l_btn">←</li>
+						<li class="y_x_btn">×</li>
+						<li class="y_r_btn">→</li>
+					</ul>
+				</div>
+			</div>
+			<div class="menu_wrp">
+				<span class="menu_item current_month"><i>十</i> 月</span>
+				<div class="menu_box">
+					<ul class="menu_items month_list">
+						<li>一月</li><li>七月</li>
+						<li>二月</li><li>八月</li>
+						<li>三月</li><li>九月</li>
+						<li>四月</li><li>十月</li>
+						<li>五月</li><li>十一</li>
+						<li>六月</li><li>十二</li>
+					</ul>
+				</div>
+			</div>
+		</li>
+		<li class="next"><span class="next_month">NxtM</span><span class="next_year ml10">NxtY</span></li>
+	</ul>
+	<table class="calendar_content">
+		<thead>
+			<tr>
+				<th>日</th>
+				<th>一</th>
+				<th>二</th>
+				<th>三</th>
+				<th>四</th>
+				<th>五</th>
+				<th>六</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="cal_gray">1</td>
+				<td class="cal_gray">2</td>
+				<td class="cal_gray">3</td>
+				<td class="cal_gray">4</td>
+				<td class="cal_gray">5</td>
+				<td class="cal_gray">6</td>
+				<td class="cal_gray">7</td>
+			</tr>
+			<tr>
+				<td class="cal_red">1</td>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+				<td>7</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+				<td>7</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+				<td>7</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+				<td>7</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+				<td>7</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+				<td>7</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="calendar_footer"></div>
+</div>
+-->
+
+<script src="./calendar2.js"></script>
+<script type="text/javascript">
+
+//Calendar.set('weekList', ['一', '二', '三', '四', '五', '六', '日' ]);
+
+/*new Calendar('calendar', {
+	default_date: '2015-05-06'
+});*/
+
+ var a =  new Calendar('startDate', {
+	default_date: '2015-07-06',
+	onClose: function(dateText, inst){
+		//b.setDefaultDate(dateText);
+		b.setMinYMD(dateText);
+	}
+});
+
+
+var b = new Calendar('endDate', {
+	default_date: '2015-10-06',
+	beforeShow: function(inst){
+		//alert('beforeShow');
+		//alert(inst.default_date);
+
+		//b.setMinYMD(a.getNow());
+		b.setMaxYMD('2015-11-03');
+	},
+	onClose: function(dateText, inst){
+		alert('close');
+		a.setDefaultDate(b.getNow());
+		a.setMaxYMD(inst.getNow());
+		a.setMinYMD(inst.getNow());
+	}
+});
+
+</script>
+</body>
+</html>
